@@ -20,7 +20,7 @@ public class PixiePal extends Application {
     private final int padding = 100;
     private final int stageWidth = workSpaceSize + toolBarSize;
     private final int stageHeight = workSpaceSize + padding;
-    private int bitStyle = 16;
+    private int bitStyle = 32;
 
     public static void main(String[] args) {
         launch(args);
@@ -32,8 +32,9 @@ public class PixiePal extends Application {
 
     private void initializeApp(Stage stage) {
         HBox mainPane = new HBox();
-        DrawingPane canvas = new DrawingPane(workSpaceSize, bitStyle);
-        ToolPane tools = new ToolPane(canvas, toolBarSize);
+        PreviewPane preview = new PreviewPane(bitStyle);
+        DrawingPane canvas = new DrawingPane(workSpaceSize, bitStyle, preview);
+        ToolPane tools = new ToolPane(canvas, preview, toolBarSize);
         Scene scene = new Scene(mainPane);
 
         mainPane.getChildren().add(canvas);

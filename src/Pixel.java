@@ -9,12 +9,13 @@ public class Pixel extends Rectangle {
     public Pixel(double dim) {
         super(dim, dim);
         totalIDs++;
-        pixID = totalIDs;
     }
 
     //public void setFill(Color color) { setFill(color); }
 
     public int getPixID() { return pixID; }
+
+    public void setPixID(int id) { this.pixID = id; }
 
     public void strokePixel(StrokeType type, Color strokeColor, double strokeWidth) {
         setStrokeType(type);
