@@ -8,7 +8,9 @@
  */
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -31,14 +33,18 @@ public class PixiePal extends Application {
     }
 
     private void initializeApp(Stage stage) {
-        HBox mainPane = new HBox();
+        GridPane mainPane = new GridPane();
         PreviewPane preview = new PreviewPane(bitStyle);
         DrawingPane canvas = new DrawingPane(workSpaceSize, bitStyle, preview);
         ToolPane tools = new ToolPane(canvas, preview, toolBarSize);
         Scene scene = new Scene(mainPane);
 
-        mainPane.getChildren().add(canvas);
-        mainPane.getChildren().add(tools);
+        mainPane.setHgap(10);
+        mainPane.setVgap(10);
+        mainPane.setPadding(new Insets(10, 10, 10, 10));
+
+        mainPane.add(canvas, 0, 0);
+        mainPane.add(tools, 1, 0);
 
         stage.setMinWidth(stageWidth);
         stage.setMinHeight(stageHeight);
