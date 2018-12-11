@@ -4,14 +4,12 @@
   Stroke inside rectangle: https://stackoverflow.com/questions/40451544/javafx-setting-a-border-within-a-rectangle-to-keep-the-width-and-height
   Mouse event for rectangle: https://stackoverflow.com/questions/13359382/creating-a-mouselistner-to-javafx-rectangle
   Colorpicker: https://docs.oracle.com/javafx/2/ui_controls/color-picker.htm
+  MouseDrag event: https://stackoverflow.com/questions/40702559/javafx-node-doesnt-recognize-when-mouse-is-being-dragged-over-it
  */
 
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PixiePal extends Application {

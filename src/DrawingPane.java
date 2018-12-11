@@ -1,6 +1,5 @@
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
@@ -15,6 +14,7 @@ public class DrawingPane extends FlowPane {
     private int bitStyle;
     private Map<Integer, Color> colorMap = new HashMap<>();
     Color curColor;
+    boolean mouseDown = false;
 
     public DrawingPane(int workspaceSize, int bitStyle) {
         super(Orientation.HORIZONTAL, 0, 0);
@@ -40,6 +40,20 @@ public class DrawingPane extends FlowPane {
             pix.strokePixel(StrokeType.INSIDE, Color.LIGHTGRAY, 0.25);
 
             pix.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    doDraw(pix);
+                }
+            });
+
+            pix.setOnDragDetected(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    pix.startFullDrag();
+                }
+            });
+
+            pix.setOnMouseDragOver(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     doDraw(pix);
