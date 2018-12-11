@@ -22,14 +22,11 @@ public class PreviewPane extends FlowPane {
         setMinSize(workspaceSize, workspaceSize);
         setMaxSize(workspaceSize, workspaceSize);
         setPrefWrapLength(workspaceSize);
-        //setStyle("-fx-border-color: lightgrey;");
+
         for(int i = 1; i <= bitStyle*bitStyle; i++) {
             int dim = workspaceSize/bitStyle;
-            Pixel pix = new Pixel(dim);
-            pix.setPixID(i);
-            pix.setFill(Color.WHITE);
+            Pixel pix = new Pixel(dim, i, Color.WHITE);
             pixels.put(pix.getPixID(), pix);
-            //pix.strokePixel(StrokeType.INSIDE, Color.LIGHTGRAY, 0.1);
 
             getChildren().add(pix);
         }
@@ -39,6 +36,6 @@ public class PreviewPane extends FlowPane {
         int pixID = pix.getPixID();
         Pixel workingPix = pixels.get(pixID);
 
-        workingPix.setFill(color);
+        workingPix.paint(color);
     }
 }

@@ -5,13 +5,13 @@
   Mouse event for rectangle: https://stackoverflow.com/questions/13359382/creating-a-mouselistner-to-javafx-rectangle
   Colorpicker: https://docs.oracle.com/javafx/2/ui_controls/color-picker.htm
   MouseDrag event: https://stackoverflow.com/questions/40702559/javafx-node-doesnt-recognize-when-mouse-is-being-dragged-over-it
+  Singleton: https://www.geeksforgeeks.org/singleton-class-java/
  */
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class PixiePal extends Application {
@@ -23,6 +23,8 @@ public class PixiePal extends Application {
     private final int stageWidth = workSpaceSize + toolBarSize;
     private final int stageHeight = workSpaceSize + padding;
     private int bitStyle = 32;
+
+    public ColorMap colorMap = ColorMap.getInstance();
 
     public static void main(String[] args) {
         launch(args);
