@@ -6,6 +6,8 @@
   Colorpicker: https://docs.oracle.com/javafx/2/ui_controls/color-picker.htm
   MouseDrag event: https://stackoverflow.com/questions/40702559/javafx-node-doesnt-recognize-when-mouse-is-being-dragged-over-it
   Singleton: https://www.geeksforgeeks.org/singleton-class-java/
+  File handling: https://docs.oracle.com/javafx/2/ui_controls/file-chooser.htm
+  File IO: https://www.tutorialspoint.com/java/java_files_io.htm
  */
 
 import javafx.application.Application;
@@ -22,9 +24,7 @@ public class PixiePal extends Application {
     private final int padding = 100;
     private final int stageWidth = workSpaceSize + toolBarSize;
     private final int stageHeight = workSpaceSize + padding;
-    private int bitStyle = 32;
-
-    public ColorMap colorMap = ColorMap.getInstance();
+    private int bitStyle = 64;
 
     public static void main(String[] args) {
         launch(args);
@@ -38,7 +38,7 @@ public class PixiePal extends Application {
         GridPane mainPane = new GridPane();
         PreviewPane preview = new PreviewPane(bitStyle);
         DrawingPane canvas = new DrawingPane(workSpaceSize, bitStyle, preview);
-        ToolPane tools = new ToolPane(canvas, preview, toolBarSize);
+        ToolPane tools = new ToolPane(canvas, preview, toolBarSize, stage);
         Scene scene = new Scene(mainPane);
 
         mainPane.setHgap(10);
@@ -47,6 +47,7 @@ public class PixiePal extends Application {
 
         mainPane.add(canvas, 0, 0);
         mainPane.add(tools, 1, 0);
+        mainPane.setStyle("-fx-background-color: lightgray");
 
         stage.setMinWidth(stageWidth);
         stage.setMinHeight(stageHeight);

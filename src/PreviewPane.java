@@ -1,6 +1,5 @@
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.StrokeType;
 
 import java.util.*;
 

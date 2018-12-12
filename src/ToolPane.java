@@ -4,6 +4,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ToolPane extends GridPane {
     private final String PICKER_STYLE = "split-button";
@@ -12,11 +13,14 @@ public class ToolPane extends GridPane {
 
     private final DrawingPane canvas;
     private final PreviewPane preview;
+    private final Stage stage;
 
-    public ToolPane(DrawingPane canvas, PreviewPane preview, double minWidth) {
+    public ToolPane(DrawingPane canvas, PreviewPane preview, double minWidth, Stage stage) {
         super();
         this.canvas = canvas;
         this.preview = preview;
+        this.stage = stage;
+
 
         setAlignment(Pos.TOP_CENTER);
         setMinWidth(minWidth);
@@ -36,8 +40,8 @@ public class ToolPane extends GridPane {
     private void addButtons() {
         GridPane buttonPane = new GridPane();
 
-        IOButton saveButton = new IOButton("Save", "save");
-        IOButton loadButton = new IOButton("Load", "load");
+        IOButton saveButton = new IOButton("Save", "save", stage);
+        IOButton loadButton = new IOButton("Load", "load", stage);
 
         buttonPane.setHgap(5);
         buttonPane.setVgap(5);

@@ -4,9 +4,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeType;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class DrawingPane extends FlowPane {
 
     private int workspaceSize;
@@ -21,6 +18,8 @@ public class DrawingPane extends FlowPane {
     }
 
     protected void createSpace(ColorPicker picker) {
+        ColorMap colorMap = ColorMap.getInstance();
+
         setVgap(0);
         setHgap(0);
 
@@ -34,6 +33,8 @@ public class DrawingPane extends FlowPane {
             pix.paint(Color.WHITE);
             pix.strokePixel(StrokeType.INSIDE, Color.LIGHTGRAY, 0.25);
             pix.setPreview(preview);
+
+            colorMap.addColor(pix, Color.WHITE);
 
             getChildren().add(pix);
 
