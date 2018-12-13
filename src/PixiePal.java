@@ -1,4 +1,7 @@
 /*
+  Rane Wallin
+  Final Programming Project
+  PixiePal is a simple pixel art style drawing tool for drawing tiles for RPG games
 
   JavaFX layouts: https://docs.oracle.com/javafx/2/layout/builtin_layouts.htm
   Stroke inside rectangle: https://stackoverflow.com/questions/40451544/javafx-setting-a-border-within-a-rectangle-to-keep-the-width-and-height
@@ -8,6 +11,7 @@
   Singleton: https://www.geeksforgeeks.org/singleton-class-java/
   File handling: https://docs.oracle.com/javafx/2/ui_controls/file-chooser.htm
   File IO: https://www.tutorialspoint.com/java/java_files_io.htm
+  File IO: https://docs.oracle.com/javase/7/docs/api/index.html?java/nio/file/Files.html
  */
 
 import javafx.application.Application;
@@ -24,7 +28,7 @@ public class PixiePal extends Application {
     private final int padding = 100;
     private final int stageWidth = workSpaceSize + toolBarSize;
     private final int stageHeight = workSpaceSize + padding;
-    private int bitStyle = 64;
+    private int bitStyle = 32;
 
     public static void main(String[] args) {
         launch(args);
@@ -36,9 +40,17 @@ public class PixiePal extends Application {
 
     private void initializeApp(Stage stage) {
         GridPane mainPane = new GridPane();
-        PreviewPane preview = new PreviewPane(bitStyle);
-        DrawingPane canvas = new DrawingPane(workSpaceSize, bitStyle, preview);
-        ToolPane tools = new ToolPane(canvas, preview, toolBarSize, stage);
+
+        DrawingPane canvas = DrawingPane.getInstance();
+        PreviewPane.getInstance().setBitStyle(bitStyle);
+
+        canvas.setBitStyle(bitStyle);
+        canvas.setWorkspaceSize(workSpaceSize);
+
+
+
+
+        ToolPane tools = new ToolPane(toolBarSize, stage);
         Scene scene = new Scene(mainPane);
 
         mainPane.setHgap(10);

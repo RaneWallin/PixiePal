@@ -1,3 +1,9 @@
+/*
+  Rane Wallin
+  Final Programming Project
+
+  ToolPane extends the GridPane. It holds the drawing tools for the PixiePal drawing program
+ */
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
@@ -10,15 +16,12 @@ public class ToolPane extends GridPane {
     private final String PICKER_STYLE = "split-button";
     private final String PICKER_LABEL = "Pick a Color";
     private final String PREVIEW_LABEL = "Preview";
-
-    private final DrawingPane canvas;
-    private final PreviewPane preview;
     private final Stage stage;
+    ColorPicker picker = new ColorPicker(Color.BLACK);
 
-    public ToolPane(DrawingPane canvas, PreviewPane preview, double minWidth, Stage stage) {
+
+    public ToolPane(double minWidth, Stage stage) {
         super();
-        this.canvas = canvas;
-        this.preview = preview;
         this.stage = stage;
 
 
@@ -43,22 +46,24 @@ public class ToolPane extends GridPane {
         IOButton saveButton = new IOButton("Save", "save", stage);
         IOButton loadButton = new IOButton("Load", "load", stage);
 
+        ClearButton clearButton = new ClearButton("New");
+
         buttonPane.setHgap(5);
         buttonPane.setVgap(5);
         buttonPane.add(saveButton, 0, 0);
         buttonPane.add(loadButton, 1, 0);
+        buttonPane.add(clearButton, 2, 0);
 
         add(buttonPane, 0, 4);
     }
 
     private void addPicker() {
-        ColorPicker picker = new ColorPicker(Color.BLACK);
-
         Label pickerLabel = new Label(PICKER_LABEL);
 
         picker.getStyleClass().add(PICKER_STYLE);
 
-        canvas.createSpace(picker);
+        DrawingPane.getInstance().addPicker(picker);
+        DrawingPane.getInstance().createNew();
 
         add(pickerLabel, 0, 2);
         add(picker, 0, 3);
@@ -66,8 +71,10 @@ public class ToolPane extends GridPane {
 
     private void addPreview() {
         Label previewLabel = new Label(PREVIEW_LABEL);
+        PreviewPane preview = PreviewPane.getInstance();
+
         add(previewLabel, 0, 0);
-        add(preview, 0, 1);
+        add(PreviewPane.getInstance(), 0, 1);
     }
 
 

@@ -1,13 +1,24 @@
-import javafx.scene.control.Button;
+/*
+ Rane Wallin
+ Final Programming Assignment
+
+ IOButton extends the javafx Button class. It handles file input
+ and output
+ */
+
+
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Button;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class IOButton extends Button {
     private String ioType;
@@ -19,10 +30,25 @@ public class IOButton extends Button {
         this.stage = stage;
     }
 
-    private File openFile(String title) {
+    private void loadFile(String title) {
         FileChooser chooser = new FileChooser();
+        FileInputStream in = null;
+        ColorMap colorMap = ColorMap.getInstance();
         chooser.setTitle(title);
-        return chooser.showOpenDialog(stage);
+
+        File file = chooser.showOpenDialog(stage);
+
+        if(file != null) {
+            try {
+                Path input = Paths.get(file.getPath());
+                List<String> fileInput = new ArrayList<>();
+                fileInput = Files.readAllLines(input);
+                colorMap.replaceColorMap((ArrayList) fileInput);
+            } catch(IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
     }
 
     private void saveFile(String title) {
@@ -36,8 +62,9 @@ public class IOButton extends Button {
         if(file != null) {
             try {
                 Path output = Paths.get(file.getPath());
-                ArrayList<String> fileOutput = new ArrayList<>();
-                ArrayList<Pixel> pixels = (ArrayList) ColorMap.getInstance().getPixels();
+                List<String> fileOutput = new ArrayList<>();
+                fileOutput.add(ColorMap.getInstance().getPixelSize()+"");
+                Set<Pixel> pixels = (TreeSet) ColorMap.getInstance().getPixels();
                 for(Pixel pixel: pixels) {
                     fileOutput.add(pixel.getPixID()+":"+ColorMap.getInstance().getColor(pixel));
                 }
@@ -57,6 +84,7 @@ public class IOButton extends Button {
                 saveFile(title);
                 break;
             case "load":
+                loadFile(title);
                 break;
             default:
                 System.out.println("Error");

@@ -1,15 +1,22 @@
+/*
+  Rane Wallin
+  Final Programming Assignment
+
+  Pixel extends the javafx Rectangle class and implements the Comparable interface
+  Pixel contains the data for each individual pixel, as well as the logic and
+  EventHandlers
+ */
+
 import javafx.event.EventHandler;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 
-public class Pixel extends Rectangle {
+public class Pixel extends Rectangle implements Comparable<Pixel> {
     private final int pixID;
     private ColorPicker picker;
-    private PreviewPane preview;
     ColorMap colorMap = ColorMap.getInstance();
 
     public Pixel(double dim, int pixID, ColorPicker picker) {
@@ -28,11 +35,16 @@ public class Pixel extends Rectangle {
         this.pixID = pixID;
     }
 
-    public void setPreview(PreviewPane preview) {
-        this.preview = preview;
+    public int getPixID() { return pixID; }
+
+    public double getPixSize() {
+        return getHeight();
     }
 
-    public int getPixID() { return pixID; }
+    protected void addPicker(ColorPicker picker) {
+        this.picker = picker;
+        setHandlers();
+    }
 
     public void strokePixel(StrokeType type, Color strokeColor, double strokeWidth) {
         setStrokeType(type);
@@ -41,9 +53,11 @@ public class Pixel extends Rectangle {
     }
 
     public void paint(Color color) {
-        setFill(color);
+        PreviewPane preview = PreviewPane.getInstance();
 
-        if(preview != null) preview.updateSpace(this, color);
+        setFill(color);
+        if (preview != null) preview.updateSpace(this, color);
+
 
         colorMap.addColor(this, color);
     }
@@ -69,6 +83,18 @@ public class Pixel extends Rectangle {
                 paint(picker.getValue());
             }
         });
+    }
+
+    @Override
+    public int compareTo(Pixel otherPixel) {
+        int compared;
+
+        if (otherPixel.getPixID() == this.pixID) compared = 0;
+        else
+        if (otherPixel.getPixID() > this.pixID) compared = -1;
+        else compared = 1;
+
+        return compared;
     }
 
 }
