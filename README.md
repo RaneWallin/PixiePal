@@ -5,8 +5,10 @@ PixiePal is a simple pixel art style editor for creating tiles for RPG games.
 
 # License
 
-PixiePal is made available under MIT license. Feel free to fork and modify as desired. The PixiePal project can be found on [GitHub](https://github.com/RaneWallin/PixiePal)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+PixiePal is made available under MIT license. Feel free to fork and modify as desired. The PixiePal project can be found on [GitHub](https://github.com/RaneWallin/PixiePal)
+
 
 ## Creating your first drawing
 
