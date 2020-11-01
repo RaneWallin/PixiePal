@@ -12,7 +12,7 @@ PixiePal is made available under MIT license. Feel free to fork and modify as de
 
 ## Creating your first drawing
 
-To use PixiePal, please download the [executable jar file.](http://ranewallin.com/PixiePal.jar).
+To use PixiePal, PixiePal is written in Java 8. It can be compiled and published to an executable jar file.
 
 The current version of PixiePal only has one drawing tool, your mouse. You can click individual pixels or click and drag your mouse over pixels to paint them.
 
